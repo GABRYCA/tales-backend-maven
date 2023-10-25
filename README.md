@@ -9,7 +9,7 @@ Currently Tales doesn't use this Backend, but it's a monolithic PHP Object Orien
 1. Clone this repository
 2. It's recommended to use **IntelliJ Idea Ultimate** to run this project, as it will do all the imports for you
 3. Run the project
-4. Check if [localhost:8080/hello](localhost:8080/hello) returns `"Hello World!"`, if yes, then you're ready to go.
+4. Check if [localhost:8080/hello](http://localhost:8080/hello) returns `"Hello World!"`, if yes, then you're ready to go.
 
 ### WARNING:
 You should create an application.properties inside src/main/resources and add the following:
@@ -25,7 +25,7 @@ spring.datasource.hikari.max-lifetime=590000
 **REPLACE THE VALUES WITH YOUR OWN!**
 
 ## Swagger:
-This project uses Swagger to document the API, you can access it by going to [localhost:8080/swagger-ui.html](localhost:8080/swagger-ui.html)
+This project uses Swagger to document the API, you can access it by going to [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 ## Credits and License:
 I do not take any responsibility for the usage of this code, it's free to use, but I do not guarantee it will work as intended, or that it will work at all.
