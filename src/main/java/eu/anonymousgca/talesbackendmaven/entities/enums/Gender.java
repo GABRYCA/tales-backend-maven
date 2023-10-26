@@ -1,4 +1,4 @@
-package eu.anonymousgca.talesbackendmaven.entities;
+package eu.anonymousgca.talesbackendmaven.entities.enums;
 
 public enum Gender {
     male,

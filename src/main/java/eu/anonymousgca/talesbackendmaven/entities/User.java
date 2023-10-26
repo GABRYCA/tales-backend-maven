@@ -1,68 +1,75 @@
 package eu.anonymousgca.talesbackendmaven.entities;
 
-import jakarta.persistence.*;
-import lombok.*;
+import eu.anonymousgca.talesbackendmaven.entities.enums.Gender;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
-@Data
+@Getter
+@Setter
 @Entity
-@Table(name = "User")
 public class User {
-
     @Id
-    @Column(name = "username", nullable = false, unique = true)
+    @Size(max = 255)
+    @Column(name = "username", nullable = false)
     private String username;
 
-    @Column(name="gender", length = 11, nullable = false, columnDefinition = "unspecified")
-    @Enumerated(EnumType.STRING)
+    @Size(max = 11)
+    @Column(name = "gender", length = 11)
     private Gender gender;
 
-    @Column(name="email", nullable = false, unique = true)
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name="password", nullable = false)
+    @Size(max = 255)
+    @NotNull
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name="urlProfilePicture", columnDefinition = "common/assets/profile.webp")
+    @Size(max = 255)
+    @Column(name = "urlProfilePicture")
     private String urlProfilePicture;
 
-    @Column(name="urlCoverPicture", columnDefinition = "common/assets/cover.webp")
+    @Size(max = 255)
+    @Column(name = "urlCoverPicture")
     private String urlCoverPicture;
 
-    @Column(name="description")
+    @Size(max = 255)
+    @Column(name = "description")
     private String description;
 
-    @Column(name="motto", columnDefinition = "I'm a new user!")
+    @Size(max = 255)
+    @Column(name = "motto")
     private String motto;
 
-    @Column(name="showNSFW", nullable = false, columnDefinition = "0")
-    private boolean showNSFW;
+    @Column(name = "showNSFW")
+    private Boolean showNSFW;
 
-    @Column(name="ofAge", nullable = false, columnDefinition = "1")
-    private boolean ofAge;
+    @Column(name = "ofAge")
+    private Boolean ofAge;
 
-    @Column(name="isActivated", nullable = false, columnDefinition = "0")
-    private boolean isActivated;
+    @Column(name = "isActivated")
+    private Boolean isActivated;
 
-    @Column(name="isMuted", nullable = false, columnDefinition = "0")
-    private boolean isMuted;
+    @Column(name = "isMuted")
+    private Boolean isMuted;
 
-    @Column(name="canUpload", nullable = false, columnDefinition = "0")
-    private boolean canUpload;
-
-    @Column(name="activationCode", length = 50)
+    @Size(max = 50)
+    @Column(name = "activationCode", length = 50)
     private String activationCode;
 
-    @Column(name="joinDate", columnDefinition = "DATETIME DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime joinDate;
+    @Column(name = "joinDate")
+    private Instant joinDate;
 
-    // @JsonManagedReference
-    //@JsonIgnore
-    /*@OneToMany(mappedBy = "ownerIdObject")
-    @Getter(AccessLevel.NONE)
-    @Setter(AccessLevel.NONE)
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private List<Content> contentList;*/
+    @Column(name = "canUpload")
+    private Boolean canUpload;
+
 }
