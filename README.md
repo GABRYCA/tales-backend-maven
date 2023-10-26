@@ -3,7 +3,7 @@ This is essentially my personal playground into learning Backend APIs, starting 
 
 You may be wondering, what's tales? That's a side project I made in PHP 8.3, essentially it's an arts/posts sharing website, you can view it [here](https://tales.anonymousgca.eu/).
 
-Currently Tales doesn't use this Backend, but it's a monolithic PHP Object Oriented Application, so it's not that hard to migrate it to this backend. Anyway I'm planning into migrating it into SvelteKit or React and using this backend.
+Currently Tales doesn't use this Backend, but it's a monolithic PHP Object Oriented Application, so it's... kind of hard to migrate it to this backend. Anyway I'm planning into migrating it into SvelteKit or React and using this backend.
 
 ## Installation:
 1. Clone this repository
