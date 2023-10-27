@@ -31,6 +31,30 @@ public class UserController {
         return userRepository.findById(username).orElseThrow(() -> new UserNotFoundException(username));
     }
 
+    @GetMapping("/{username}/activation/{activationCode}")
+    public User getUserByActivationCode(@PathVariable String username, @PathVariable String activationCode) {
+
+        if (username == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
+
+        // search for user by username and activation code, if found, activate account setting activationCode to null and isActivated to true
+        User user = userRepository.findByUsernameAndActivationCode(username, activationCode);
+
+        if (user == null) {
+            throw new IllegalArgumentException("User and activation code not found!");
+        }
+
+        user.setActivationCode(null);
+        user.setIsActivated(true);
+
+        userRepository.save(user);
+
+        return user;
+    }
+
+    @GetMapping("/{username}/activation")
+
     @PostMapping
     public void addUser(@RequestBody User user) {
         userRepository.save(user);
