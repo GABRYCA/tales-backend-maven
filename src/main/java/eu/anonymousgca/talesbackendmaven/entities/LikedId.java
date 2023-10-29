@@ -16,6 +16,7 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class LikedId implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 3594482247375940632L;
     @Size(max = 255)
@@ -25,7 +26,7 @@ public class LikedId implements Serializable {
 
     @NotNull
     @Column(name = "contentId", nullable = false)
-    private Long contentId;
+    private int contentId;
 
     @Override
     public boolean equals(Object o) {
@@ -40,5 +41,4 @@ public class LikedId implements Serializable {
     public int hashCode() {
         return Objects.hash(contentId, userId);
     }
-
 }

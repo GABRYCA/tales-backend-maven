@@ -22,5 +22,4 @@ public class Liked {
     @JoinColumn(name = "contentId", nullable = false)
     @JsonIgnore
     private Content content;
-
 }

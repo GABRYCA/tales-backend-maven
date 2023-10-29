@@ -4,10 +4,8 @@ import eu.anonymousgca.talesbackendmaven.entities.Comment;
 import eu.anonymousgca.talesbackendmaven.entities.Content;
 import eu.anonymousgca.talesbackendmaven.entities.Liked;
 import eu.anonymousgca.talesbackendmaven.exceptions.ContentNotFoundException;
-import eu.anonymousgca.talesbackendmaven.interfaces.CommentRepository;
-import eu.anonymousgca.talesbackendmaven.interfaces.ContentRepository;
-import eu.anonymousgca.talesbackendmaven.interfaces.LikedRepository;
-import eu.anonymousgca.talesbackendmaven.interfaces.NotificationRepository;
+import eu.anonymousgca.talesbackendmaven.exceptions.UserNotFoundException;
+import eu.anonymousgca.talesbackendmaven.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +30,9 @@ public class ContentController {
 
     @Autowired
     private LikedRepository likedRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
 
     ///////////////////////////////////
@@ -99,6 +100,55 @@ public class ContentController {
     @PostMapping
     public void addContent(@RequestBody Content content) {
         contentRepository.save(content);
+    }
+
+    @PostMapping("/{contentId}/like")
+    public void addLikeToContent(@PathVariable Long contentId, @RequestParam(name = "username") String username){
+
+        if (contentId == null) {
+            throw new IllegalArgumentException("Content ID cannot be null");
+        }
+
+        if (username == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
+
+        // Search for content and user, if not found, throws error
+        Content content = contentRepository.findById(contentId).orElseThrow(() -> new ContentNotFoundException(contentId));
+        userRepository.findById(username).orElseThrow(() -> new UserNotFoundException(username));
+
+        // Create a new liked object and check if it's already liked
+        if (likedRepository.findByIdContentIdAndIdUserId(contentId, username) != null) {
+            throw new IllegalArgumentException("Content already liked");
+        }
+
+        // Creates and saves
+        likedRepository.create(username, content);
+    }
+
+    @PostMapping("/{contentId}/unlike")
+    public void removeLikeFromContent(@PathVariable Long contentId, @RequestParam(name = "username") String username){
+
+        if (contentId == null) {
+            throw new IllegalArgumentException("Content ID cannot be null");
+        }
+
+        if (username == null) {
+            throw new IllegalArgumentException("Username cannot be null");
+        }
+
+        // Search for content and user, if not found, throws error
+        contentRepository.findById(contentId).orElseThrow(() -> new ContentNotFoundException(contentId));
+        userRepository.findById(username).orElseThrow(() -> new UserNotFoundException(username));
+
+        Liked liked = likedRepository.findByIdContentIdAndIdUserId(contentId, username);
+
+        // Create a new liked object and check if it's already liked
+        if (liked == null) {
+            throw new IllegalArgumentException("Content not liked");
+        }
+
+        likedRepository.deleteById(liked.getId());
     }
 
     ///////////////////////////////////

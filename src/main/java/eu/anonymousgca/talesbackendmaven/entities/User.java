@@ -1,6 +1,5 @@
 package eu.anonymousgca.talesbackendmaven.entities;
 
-import eu.anonymousgca.talesbackendmaven.entities.enums.Gender;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,8 +20,8 @@ public class User {
     private String username;
 
     @Size(max = 11)
-    @Column(name = "gender", length = 11)
-    private Gender gender;
+    @Column(name = "gender")
+    private String gender;
 
     @Size(max = 255)
     @NotNull
