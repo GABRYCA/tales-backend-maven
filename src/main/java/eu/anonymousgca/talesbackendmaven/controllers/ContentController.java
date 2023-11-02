@@ -2,6 +2,7 @@ package eu.anonymousgca.talesbackendmaven.controllers;
 
 import eu.anonymousgca.talesbackendmaven.entities.Comment;
 import eu.anonymousgca.talesbackendmaven.entities.Content;
+import eu.anonymousgca.talesbackendmaven.entities.GalleryAssociation;
 import eu.anonymousgca.talesbackendmaven.entities.Liked;
 import eu.anonymousgca.talesbackendmaven.exceptions.ContentNotFoundException;
 import eu.anonymousgca.talesbackendmaven.exceptions.UserNotFoundException;
@@ -33,6 +34,9 @@ public class ContentController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private GalleryAssociationRepository galleryAssociationRepository;
 
 
     ///////////////////////////////////
@@ -81,6 +85,19 @@ public class ContentController {
         contentRepository.findById(contentId).orElseThrow(() -> new ContentNotFoundException(contentId));
 
         return likedRepository.findByIdContentId(contentId);
+    }
+
+    @GetMapping("/{contentId}/galleries")
+    public List<GalleryAssociation> getGalleriesByContent(@PathVariable Long contentId) {
+
+        if (contentId == null) {
+            throw new IllegalArgumentException("Content ID cannot be null");
+        }
+
+        // Check if content found
+        contentRepository.findById(contentId).orElseThrow(() -> new ContentNotFoundException(contentId));
+
+        return galleryAssociationRepository.findByIdContentId(contentId);
     }
 
     @GetMapping("/user/{username}")

@@ -1,5 +1,6 @@
 package eu.anonymousgca.talesbackendmaven.entities;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -15,7 +16,7 @@ public class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contentId", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Size(max = 255)
     @Column(name = "ownerId")
@@ -52,5 +53,4 @@ public class Content {
 
     @Column(name = "isAI")
     private Boolean isAI;
-
 }

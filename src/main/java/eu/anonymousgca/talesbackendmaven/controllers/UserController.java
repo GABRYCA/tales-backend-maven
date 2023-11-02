@@ -154,22 +154,6 @@ public class UserController {
         return user;
     }
 
-    @PostMapping("/{username}/showNSFW")
-    public User setUserShowNSFW(@PathVariable String username, @RequestBody boolean showNSFW) {
-
-        if (username == null) {
-            throw new IllegalArgumentException("Username cannot be null");
-        }
-
-        // check if present, otherwise throw exception
-        User user = userRepository.findById(username).orElseThrow(() -> new UserNotFoundException(username));
-
-        user.setShowNSFW(showNSFW);
-        userRepository.save(user);
-
-        return user;
-    }
-
     @PostMapping("/{username}/ofAge")
     public User setUserOfAge(@PathVariable String username, @RequestBody boolean ofAge) {
 

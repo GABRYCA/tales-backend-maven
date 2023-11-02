@@ -15,6 +15,10 @@ public class GalleryGroup {
     @Column(name = "galleryId", nullable = false)
     private Integer id;
 
+    @NotNull
+    @Column(name = "ownerId", nullable = false)
+    private String ownerId;
+
     @Size(max = 255)
     @NotNull
     @Column(name = "name", nullable = false)

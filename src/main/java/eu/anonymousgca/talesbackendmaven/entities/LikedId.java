@@ -26,7 +26,7 @@ public class LikedId implements Serializable {
 
     @NotNull
     @Column(name = "contentId", nullable = false)
-    private int contentId;
+    private Long contentId;
 
     @Override
     public boolean equals(Object o) {

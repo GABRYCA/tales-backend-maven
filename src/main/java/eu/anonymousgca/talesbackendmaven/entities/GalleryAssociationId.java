@@ -19,11 +19,11 @@ public class GalleryAssociationId implements Serializable {
     private static final long serialVersionUID = -322409898706326663L;
     @NotNull
     @Column(name = "galleryId", nullable = false)
-    private Integer galleryId;
+    private Long galleryId;
 
     @NotNull
     @Column(name = "contentId", nullable = false)
-    private Integer contentId;
+    private Long contentId;
 
     @Override
     public boolean equals(Object o) {
