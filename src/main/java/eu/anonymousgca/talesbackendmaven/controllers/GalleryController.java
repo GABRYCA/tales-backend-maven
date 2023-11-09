@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/gallery")
+@RequestMapping("/api/v1/gallery")
 public class GalleryController {
 
     @Autowired

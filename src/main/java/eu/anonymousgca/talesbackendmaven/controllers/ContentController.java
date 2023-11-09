@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/content")
+@RequestMapping("/api/v1/content")
 public class ContentController {
 
     ///////////////////////////////////
