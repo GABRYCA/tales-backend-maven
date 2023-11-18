@@ -1,3 +1,10 @@
+<h1>Archivied! Won't update!</h1>
+This project allowed me to explore the basics of Java Spring Boot, yet little I did know about the even more advanced features available.
+The new Backend for this project will undervelop an entirely new Project in the future, for learning and practice purpose with Java 21.
+Thanks for reading, feel free to explore the code.
+
+<hr>
+
 # Welcome to the Tales Java Spring Backend!
 This is essentially my personal playground into learning Backend APIs, starting wth java, because that's the language we're using to achieve my Bachelor's Degree.
 
